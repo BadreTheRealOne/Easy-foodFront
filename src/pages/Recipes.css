@@ -1,0 +1,175 @@
+/* =========================
+   PAGE
+========================= */
+.recipes-page {
+  width: 100%;
+ 
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.recipes-wrapper {
+  width: 100%;
+  max-width: 1600px; /* 👈 plus large */
+  padding: 0 4rem;
+}
+
+/* =========================
+   TITRE
+========================= */
+.recipes-title {
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+/* =========================
+   GRID
+========================= */
+.recipes-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 300px); /* 👈 cards plus larges */
+  gap: 3rem; /* 👈 plus d’air */
+  justify-content: center;
+}
+
+/* =========================
+   CARD
+========================= */
+.recipe-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+
+  box-shadow: 0 16px 40px rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 55px rgba(0,0,0,.75);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.recipe-card img {
+  width: 100%;
+  height: 200px; /* 👈 image plus grande */
+  object-fit: cover;
+}
+
+/* =========================
+   TITRE RECETTE
+========================= */
+.recipe-card h3 {
+  color: white;
+  margin: 1.2rem 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* =========================
+   BOUTON
+========================= */
+.recipe-card button {
+  width: 100%;
+  border: none;
+  padding: 0.9rem;
+  background: #f6a52a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+.recipe-thumb {
+  position: relative;
+}
+
+.badge-mine {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: rgba(246, 165, 42, 0.95);
+  color: #2d2d2d;
+  font-weight: 800;
+  font-size: 0.85rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+}
+
+.recipe-card-body {
+  padding: 14px 14px 16px;
+}
+
+.recipe-card-title {
+  margin: 8px 0 10px;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: 700;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+  font-size: 0.9rem;
+  color: rgba(255,255,255,.75);
+}
+
+.recipe-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.recipe-btn {
+  flex: 1;
+  border: none;
+  padding: 0.7rem;
+  background: #f6a52a;
+  font-weight: 800;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.recipe-btn.danger {
+  background: rgba(255, 70, 70, 0.95);
+  color: #fff;
+}
+
+.recipes-loadmore {
+  display: flex;
+  justify-content: center;
+  margin: 2.2rem 0 0;
+}
+
+.loadmore-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 12px 22px;
+  font-weight: 800;
+  cursor: pointer;
+  background: rgba(0,0,0,.55);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  box-shadow: 0 18px 40px rgba(0,0,0,.35);
+}
+
+.loadmore-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.end-list {
+  color: rgba(255,255,255,.8);
+  font-weight: 700;
+}

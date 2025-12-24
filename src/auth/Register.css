@@ -1,0 +1,133 @@
+/* =========================
+   PAGE register (CENTRÉE)
+========================= */
+.register-page {
+ margin-top: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* =========================
+   CONTAINER CENTRAL
+========================= */
+.register-container {
+width: 100%;
+    max-width: 60%;
+    height: 700px;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  background-color: #f5f1ea;
+  border-radius: 24px;
+  overflow: hidden;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================
+   PARTIE GAUCHE (VISUEL)
+========================= */
+.register-left {
+  background-image: url("../assets/stars.jpg");
+  background-size: cover;
+  background-position: center;
+
+  color: white;
+  padding: 3rem;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.orange-t{
+    color: #f6a52a;
+}
+.left-title-l{
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.img-left-c img{
+    height: 180px;
+}
+.register-left h2 {
+  font-size: 2.4rem;
+  font-weight: 800;
+}
+
+
+.register-left p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+}
+
+/* =========================
+   PARTIE DROITE (FORM)
+========================= */
+.register-right {
+  padding: 3rem 7.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.register-right h1 {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.register-right label {
+  font-size: 1rem;
+  text-align: left;
+  margin-bottom: 0.3rem;
+}
+
+.register-right input {
+  height: 38px;
+  border-radius: 8px;
+  border: 2px solid #222;
+  padding: 0 0.7rem;
+  margin-bottom: 1rem;
+}
+
+/* =========================
+   CHECKBOX
+========================= */
+.register-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+}
+
+/* =========================
+   BOUTON
+========================= */
+.register-btn {
+  background-color: #f6a52a;
+  border: none;
+  border-radius: 8px;
+  padding: 0.6rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .register-container {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .register-left {
+    min-height: 200px;
+  }
+}

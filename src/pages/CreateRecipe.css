@@ -1,0 +1,114 @@
+/* =========================
+   PAGE
+========================= */
+.create-recipe-page {
+ 
+  padding: 4rem 0 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* =========================
+   TITRE
+========================= */
+.create-recipe-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2.5rem;
+  text-shadow: 0 6px 18px rgba(0,0,0,.6);
+}
+
+/* =========================
+   FORMULAIRE
+========================= */
+.create-recipe-form {
+  width: 100%;
+  max-width: 800px;
+  background-color: #f5f1ea;
+  padding: 2.8rem 3rem;
+  border-radius: 22px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  box-shadow: 0 30px 80px rgba(0,0,0,.5);
+}
+
+/* =========================
+   ROW
+========================= */
+.form-row {
+  display: flex;
+  gap: 1.2rem;
+}
+
+/* =========================
+   GROUP
+========================= */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.form-group.full {
+  width: 100%;
+}
+
+/* =========================
+   LABEL
+========================= */
+.form-group label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+/* =========================
+   INPUT / TEXTAREA
+========================= */
+.form-group input,
+.form-group textarea {
+  border-radius: 10px;
+  border: 2px solid #222;
+  padding: 0.6rem 0.8rem;
+  font-size: 0.9rem;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* =========================
+   BOUTON
+========================= */
+.create-btn {
+  align-self: center;
+  margin-top: 1rem;
+
+  background-color: #f6a52a;
+  border: none;
+  border-radius: 10px;
+  padding: 0.6rem 2.5rem;
+  font-weight: 700;
+  cursor: pointer;
+
+  box-shadow: 0 8px 22px rgba(0,0,0,.35);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .form-row {
+    flex-direction: column;
+  }
+
+  .create-recipe-form {
+    padding: 2rem 1.8rem;
+  }
+}

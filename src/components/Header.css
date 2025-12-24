@@ -1,0 +1,68 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+    padding: 20px;
+  background: transparent;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-logo {
+  width: 15em;
+}
+
+.brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #F6A52A;
+}
+
+.header-nav a {
+  margin: 0 14px;
+  text-decoration: none;
+  color: #BBBBBB;
+  font-size: 1.5rem;
+}
+
+.header-nav a:hover {
+  color: #F6A52A;
+}
+
+.header-actions {
+  display: flex;
+  gap: 12px;
+  
+}
+button{
+     font-size: 1.2rem;
+}
+.btn-primary {
+  background: #F6A52A;
+  color: #2D2D2D;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 20px;
+  font-weight: 600;
+  cursor: pointer;
+}
+a{
+  text-decoration: none;
+  list-style-type: none;
+  color: #ffffff;
+  font-weight:500;
+}
+.btn-outline {
+  background: transparent;
+  border: 1px solid #F6A52A;
+  color: #F6A52A;
+  padding: 10px 18px;
+  border-radius: 20px;
+  cursor: pointer;
+  
+  border: none;
+}

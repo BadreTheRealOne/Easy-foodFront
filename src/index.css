@@ -1,0 +1,28 @@
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+
+  background-image: url("./assets/bgi.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  font-family: 'Poppins', sans-serif;
+}
+
+
+#root {
+  height: 100%;
+}
+
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1; /* 👈 C'EST LUI LA CLE */
+  display: flex;
+}

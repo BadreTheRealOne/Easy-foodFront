@@ -1,0 +1,91 @@
+/* =========================
+   PAGE
+========================= */
+.Favorites-page {
+  width: 100%;
+ 
+  display: flex;
+  justify-content: center;
+}
+
+/* =========================
+   WRAPPER
+========================= */
+.Favorites-wrapper {
+  width: 100%;
+  max-width: 1600px; /* 👈 plus large */
+  padding: 0 4rem;
+}
+
+/* =========================
+   TITRE
+========================= */
+.Favorites-title {
+  color: white;
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 3.5rem;
+  text-align: center;
+}
+
+/* =========================
+   GRID
+========================= */
+.Favorites-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 300px); /* 👈 cards plus larges */
+  gap: 3rem; /* 👈 plus d’air */
+  justify-content: center;
+}
+
+/* =========================
+   CARD
+========================= */
+.Favorite-card {
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 18px;
+  overflow: hidden;
+  text-align: center;
+
+  box-shadow: 0 16px 40px rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.Favorite-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 55px rgba(0,0,0,.75);
+}
+
+/* =========================
+   IMAGE
+========================= */
+.Favorite-card img {
+  width: 100%;
+  height: 200px; /* 👈 image plus grande */
+  object-fit: cover;
+}
+
+/* =========================
+   TITRE RECETTE
+========================= */
+.Favorite-card h3 {
+  color: white;
+  margin: 1.2rem 0 1rem;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+/* =========================
+   BOUTON
+========================= */
+.Favorite-card button {
+  width: 100%;
+  border: none;
+  padding: 0.9rem;
+  background: #f6a52a;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}

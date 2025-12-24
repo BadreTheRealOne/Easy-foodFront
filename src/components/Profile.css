@@ -1,0 +1,79 @@
+.profile-page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-card {
+  width: 100%;
+  max-width: 520px;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(6px);
+  border-radius: 22px;
+  padding: 3rem 3rem 2.5rem;
+
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.7);
+}
+
+.profile-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 2.5rem;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.profile-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.9rem 1.2rem;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+.profile-row span {
+  color: #bbbbbb;
+  font-size: 0.9rem;
+}
+
+.profile-row strong {
+  color: white;
+  font-weight: 600;
+}
+
+.profile-actions {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+
+/* BOUTON RGPD */
+.danger-btn {
+  background: transparent;
+  color: #ff5c5c;
+  border: 2px solid #ff5c5c;
+  padding: 0.75rem 2.2rem;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+
+  transition: all 0.2s ease;
+}
+
+.danger-btn:hover {
+  background: #ff5c5c;
+  color: white;
+}
+
+.profile-loading {
+  color: white;
+  text-align: center;
+  margin-top: 5rem;
+}
