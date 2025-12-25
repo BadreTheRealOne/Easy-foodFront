@@ -84,7 +84,7 @@ export default function CreateRecipe() {
             <select
               name="categoryId"
               onChange={handleChange}
-              required
+             
             >
               <option value="">Choisir une catégorie</option>
               {categories.map((cat) => (
