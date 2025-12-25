@@ -27,7 +27,7 @@ export default function Home() {
             budget des étudiants.
           </p>
 
-          <button className="cta-btn" > <a href="recipes">Voir les recettes</a></button>
+          <button className="cta-btn" > <a href="/recipes">Voir les recettes</a></button>
         </div>
       </section>
     </main>
