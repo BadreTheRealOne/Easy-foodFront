@@ -1,5 +1,6 @@
 import "./Home.css";
 import heroFood from "../assets/menue-home-img.png";
+import { Link } from "react-router-dom";
 
 export default function Home() {
   return (
@@ -27,7 +28,7 @@ export default function Home() {
             budget des étudiants.
           </p>
 
-          <button className="cta-btn" > <a href="/recipes">Voir les recettes</a></button>
+          <button className="cta-btn" >  <Link to="/recipes">Voir les recettes</Link></button>
         </div>
       </section>
     </main>
