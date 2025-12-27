@@ -1,68 +1,146 @@
+/* =========================
+   HEADER BASE
+========================= */
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-    padding: 20px;
-  background: transparent;
+  padding: 18px 28px;
+  position: relative;
+  z-index: 50;
 }
 
 .header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
 }
 
 .header-logo {
-  width: 15em;
+  width: 140px;
 }
 
-.brand {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #F6A52A;
+/* =========================
+   NAV DESKTOP
+========================= */
+.header-nav {
+  display: flex;
+  gap: 26px;
 }
 
 .header-nav a {
-  margin: 0 14px;
+  color: #bbbbbb;
+  font-size: 1.1rem;
   text-decoration: none;
-  color: #BBBBBB;
-  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 .header-nav a:hover {
-  color: #F6A52A;
+  color: #f6a52a;
 }
 
+/* =========================
+   ACTIONS DESKTOP
+========================= */
 .header-actions {
   display: flex;
   gap: 12px;
-  
 }
-button{
-     font-size: 1.2rem;
-}
+
 .btn-primary {
-  background: #F6A52A;
-  color: #2D2D2D;
+  background: #f6a52a;
+  color: #2d2d2d;
   border: none;
-  padding: 10px 18px;
+  padding: 8px 18px;
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
 }
-a{
-  text-decoration: none;
-  list-style-type: none;
-  color: #ffffff;
-  font-weight:500;
-}
+
 .btn-outline {
   background: transparent;
-  border: 1px solid #F6A52A;
-  color: #F6A52A;
-  padding: 10px 18px;
+  border: 2px solid #f6a52a;
+  color: #f6a52a;
+  padding: 8px 18px;
   border-radius: 20px;
   cursor: pointer;
-  
+}
+
+/* =========================
+   BURGER ICON
+========================= */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
   border: none;
+  cursor: pointer;
+}
+
+.burger span {
+  width: 26px;
+  height: 3px;
+  background: #f6a52a;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+.burger.open span:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* =========================
+   MENU MOBILE
+========================= */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  transform: translateY(-100%);
+  transition: transform 0.35s ease;
+}
+
+.mobile-menu.show {
+  transform: translateY(0);
+}
+
+.mobile-menu a {
+  color: white;
+  font-size: 1.5rem;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mobile-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 1024px) {
+  .header-nav,
+  .header-actions {
+    display: none;
+  }
+
+  .burger {
+    display: flex;
+  }
 }

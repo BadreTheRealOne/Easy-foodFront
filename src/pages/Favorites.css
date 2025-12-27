@@ -89,3 +89,48 @@
   font-weight: 600;
   cursor: pointer;
 }
+/* =========================
+   RESPONSIVE FAVORITES
+========================= */
+
+/* DESKTOP TRÈS LARGE */
+@media (min-width: 1600px) {
+  .Favorites-grid {
+    grid-template-columns: repeat(5, 300px);
+  }
+}
+
+/* LAPTOP / DESKTOP */
+@media (max-width: 1599px) and (min-width: 1200px) {
+  .Favorites-grid {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+/* TABLET (iPad, Galaxy Tab, etc.) */
+@media (max-width: 1199px) and (min-width: 768px) {
+  .Favorites-grid {
+    grid-template-columns: repeat(2, minmax(260px, 1fr));
+    gap: 2rem;
+  }
+
+  .Favorites-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 767px) {
+  .Favorites-grid {
+    grid-template-columns: 1fr;
+    gap: 1.6rem;
+  }
+
+  .Favorites-wrapper {
+    padding: 0 1.2rem;
+  }
+
+  .Favorite-card img {
+    height: 180px;
+  }
+}

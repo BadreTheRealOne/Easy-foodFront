@@ -1,20 +1,9 @@
 /* =========================
    PAGE
 ========================= */
-.recipe-details-page {
- 
+.rd-page {
   width: 100%;
-  display: flex;
-  justify-content: center;
-  
-}
-
-/* =========================
-   WRAPPER CENTRAL
-========================= */
-.recipe-details-wrapper {
-  width: 100%;
-  max-width: 860px;
+  padding: 2.5rem 1rem 5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -23,26 +12,44 @@
 /* =========================
    TITRE
 ========================= */
-.recipe-details-main-title {
+.rd-title {
+  color: #fff;
   font-size: 2.2rem;
   font-weight: 800;
-  color: #fff;
-  margin-bottom: 2rem;
   text-align: center;
+  margin: 0 0 2rem;
   text-shadow: 0 6px 18px rgba(0,0,0,.6);
 }
 
 /* =========================
-   IMAGE
+   FRAME : largeur unique
+   -> Image + Card = EXACTEMENT la même
 ========================= */
-.recipe-details-image-box {
-  width: 100%;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 30px 70px rgba(0,0,0,.7);
+.rd-frame {
+  /* largeur unique RESPONSIVE */
+  --rdW: min(880px, calc(100vw - 2rem)); /* 1rem de marge de chaque côté */
+
+  width: var(--rdW);
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+  align-items: center; /* sécurité visuelle */
 }
 
-.recipe-details-image-box img {
+/* =========================
+   IMAGE / MEDIA (même largeur que card)
+========================= */
+.rd-media {
+  width: var(--rdW);
+  border-radius: 22px;
+  overflow: hidden;
+  position: relative;
+
+  /* ombre plus propre, moins “débordante” */
+  box-shadow: 0 18px 45px rgba(0,0,0,.55);
+}
+
+.rd-media img {
   width: 100%;
   height: 420px;
   object-fit: cover;
@@ -50,78 +57,118 @@
 }
 
 /* =========================
-   CARTE (ALIGNÉE PROPREMENT)
+   FAVORIS (cliquable + au dessus)
 ========================= */
-.recipe-details-card {
-  width: calc(100% - 80px); /* 👈 clé du fix */
-  margin-top: 60px;
-  background: #f8f8f8;
-  border-radius: 20px;
-  padding: 2.5rem 3rem;
-  box-shadow: 0 25px 60px rgba(0,0,0,.45);
-}
+.rd-fav {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 5;
 
-/* =========================
-   HEADER CARTE
-========================= */
-.recipe-details-card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 2rem;
-}
-
-.recipe-details-title {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: #222;
-}
-
-/* =========================
-   BOUTON FAVORIS
-========================= */
-.recipe-details-fav {
-  background-color: #f6a52a;
-  color: #222;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
   border: none;
-  padding: 0.55rem 1.3rem;
-  border-radius: 20px;
-  font-weight: 600;
-  font-size: 0.85rem;
+
   cursor: pointer;
+  pointer-events: auto;
+
+  display: grid;
+  place-items: center;
+
+  font-size: 1.25rem;
+  color: #f6a52a;
+
+  background: rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 10px 22px rgba(0,0,0,.35);
+
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.rd-fav:hover {
+  transform: scale(1.05);
+  opacity: .95;
 }
 
 /* =========================
-   TEXTE
+   CARD (même largeur que l'image)
 ========================= */
-.recipe-details-section {
-  margin-bottom: 1.8rem;
+.rd-card {
+  width: var(--rdW);
+  box-sizing: border-box;
+
+  background: #f9f7f3;
+  border-radius: 22px;
+  padding: 2.1rem 2.3rem;
+
+  /* ombre contrôlée pour ne pas “faire croire” que c’est plus large */
+  box-shadow: 0 18px 45px rgba(0,0,0,.40);
 }
 
-.recipe-details-section h3 {
+/* =========================
+   TITRE CARD
+========================= */
+.rd-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 1.4rem;
+}
+
+.rd-card-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #222;
+  margin: 0;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+.rd-section {
+  margin-bottom: 1.5rem;
+}
+
+.rd-section h3 {
+  margin: 0 0 .35rem;
   font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
+  font-weight: 800;
   color: #222;
 }
 
-.recipe-details-section p {
-  font-size: 0.95rem;
+.rd-section p {
+  margin: 0;
+  font-size: .95rem;
   line-height: 1.7;
   color: #555;
+  word-break: break-word; /* évite les débordements sur longs mots */
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 768px) {
-  .recipe-details-image-box img {
-    height: 300px;
-  }
+@media (max-width: 1024px) {
+  .rd-media img { height: 360px; }
+}
 
-  .recipe-details-card {
-    width: 100%;
-    margin-top: -40px;
-    padding: 2rem 1.5rem;
+@media (max-width: 768px) {
+  .rd-title { font-size: 1.85rem; }
+  .rd-media img { height: 300px; }
+  .rd-card { padding: 1.8rem 1.5rem; }
+}
+
+@media (max-width: 480px) {
+  .rd-title { font-size: 1.55rem; }
+  .rd-media img { height: 220px; }
+  .rd-card { padding: 1.45rem 1.15rem; }
+
+  .rd-fav {
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    font-size: 1.15rem;
   }
 }

@@ -130,9 +130,95 @@ height: 490px;
     box-shadow 0.2s ease,
     opacity 0.2s ease;
 }
-
+.home-link{
+  text-decoration: none;
+  color: #12171D;
+}
 .cta-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 14px 36px rgba(0, 0, 0, 0.55);
   opacity: 0.95;
+}
+/* =========================
+   RESPONSIVE HOME
+========================= */
+
+/* LAPTOP ≤ 1200px */
+@media (max-width: 1200px) {
+  .home-content {
+    padding: 4rem 4rem;
+    gap: 3rem;
+  }
+
+  .hero-image {
+    width: 380px;
+    height: 380px;
+  }
+
+  .title-main {
+    font-size: 64px;
+  }
+
+  .title-accent {
+    font-size: 38px;
+  }
+}
+
+/* TABLET ≤ 992px */
+@media (max-width: 992px) {
+  .home-content {
+    flex-direction: column;
+    text-align: center;
+    padding: 4rem 3rem;
+  }
+
+  .home-right {
+    align-items: center;
+  }
+
+  .home-title {
+    align-items: center;
+  }
+
+  .hero-image {
+    width: 320px;
+    height: 320px;
+  }
+
+  .title-main {
+    font-size: 56px;
+  }
+
+  .title-accent {
+    font-size: 34px;
+  }
+
+  .home-right p {
+    max-width: 100%;
+  }
+}
+
+/* MOBILE ≤ 600px */
+@media (max-width: 600px) {
+  .hero-image {
+    width: 240px;
+    height: 240px;
+  }
+
+  .title-main {
+    font-size: 42px;
+  }
+
+  .title-accent {
+    font-size: 26px;
+  }
+
+  .home-content {
+    padding: 3rem 1.5rem;
+  }
+
+  .cta-btn {
+    width: 100%;
+    text-align: center;
+  }
 }

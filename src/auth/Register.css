@@ -119,15 +119,71 @@ width: 100%;
 }
 
 /* =========================
-   RESPONSIVE
+   RESPONSIVE GLOBAL
 ========================= */
-@media (max-width: 768px) {
+
+/* =========================
+   RESPONSIVE FIX LOGIN / REGISTER
+   (LE FORM RESTE, LE LEFT DISPARAÎT)
+========================= */
+
+/* LAPTOP 1024px ↓ */
+@media (max-width: 1024px) {
+  .login-container,
   .register-container {
     grid-template-columns: 1fr;
+    max-width: 420px;
     height: auto;
   }
 
+  .login-left,
   .register-left {
-    min-height: 200px;
+    display: none;
+  }
+
+  .login-right,
+  .register-right {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* TABLET 768px ↓ */
+@media (max-width: 768px) {
+  .login-container,
+  .register-container {
+    max-width: 380px;
+  }
+
+  .login-right,
+  .register-right {
+    padding: 2.2rem 1.8rem;
+  }
+}
+
+/* MOBILE L 425px ↓ */
+@media (max-width: 425px) {
+  .login-container,
+  .register-container {
+    width: 100%;
+    max-width: 100%;
+    border-radius: 18px;
+  }
+
+  .login-right,
+  .register-right {
+    padding: 2rem 1.4rem;
+  }
+}
+
+/* MOBILE M / S 375px ↓ */
+@media (max-width: 375px) {
+  .login-right h1,
+  .register-right h1 {
+    font-size: 1.6rem;
+  }
+
+  .login-checkbox,
+  .register-checkbox {
+    font-size: 0.8rem;
   }
 }

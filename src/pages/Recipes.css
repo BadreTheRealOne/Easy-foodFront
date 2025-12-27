@@ -173,3 +173,64 @@
   color: rgba(255,255,255,.8);
   font-weight: 700;
 }
+/* =========================
+   RESPONSIVE RECIPES GRID
+========================= */
+
+/* GRAND LAPTOP */
+@media (max-width: 1400px) {
+  .recipes-grid {
+    grid-template-columns: repeat(4, 300px);
+  }
+}
+@media (min-width: 1600px) {
+  .recipes-grid {
+    grid-template-columns: repeat(5, 300px);
+  }
+}
+
+/* LAPTOP / 1440px */
+@media (max-width: 1599px) and (min-width: 1024px) {
+  .recipes-grid {
+    grid-template-columns: repeat(3, 300px);
+  }
+}
+
+/* TABLET */
+@media (max-width: 1023px) {
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipes-wrapper {
+    padding: 0 2rem;
+  }
+}
+/* LAPTOP */
+@media (max-width: 1200px) {
+  .recipes-grid {
+    grid-template-columns: repeat(3, 280px);
+  }
+}
+
+/* TABLET */
+@media (max-width: 900px) {
+  .recipes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .recipes-wrapper {
+    padding: 0 2rem;
+  }
+}
+
+/* MOBILE */
+@media (max-width: 480px) {
+  .recipes-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .recipe-card img {
+    height: 180px;
+  }
+}

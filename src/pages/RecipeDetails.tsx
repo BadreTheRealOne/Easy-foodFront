@@ -43,9 +43,13 @@ export default function RecipeDetails() {
     if (!recipe) return;
 
     try {
+      // Debug : tu verras au clic dans la console
+      console.log("CLICK FAVORITE ->", recipe.id);
+
       await api.post(`/favorites/${recipe.id}`);
       setFavMessage("La recette a été ajoutée à vos favoris ⭐");
-    } catch {
+    } catch (err) {
+      console.error("Erreur favoris:", err);
       setFavMessage("Cette recette est déjà dans vos favoris");
     } finally {
       setShowFavModal(true);
@@ -57,66 +61,70 @@ export default function RecipeDetails() {
   }
 
   if (!recipe) {
-    return <p style={{ color: "white", textAlign: "center" }}>Recette introuvable</p>;
+    return (
+      <p style={{ color: "white", textAlign: "center" }}>Recette introuvable</p>
+    );
   }
 
   return (
-    <main className="recipe-details-page">
-      <div className="recipe-details-wrapper">
+    <main className="rd-page">
+      <h1 className="rd-title">{recipe.title}</h1>
 
-        <h1 className="recipe-details-main-title">
-          {recipe.title}
-        </h1>
+      {/* 👇 largeur verrouillée (image + card = même largeur) */}
+      <div className="rd-frame">
+        {/* IMAGE */}
+        <div className="rd-media">
+          <img src={recipe.imageUrl || recetteImg} alt={recipe.title} />
 
-        <div className="recipe-details-image-box">
-          <img
-            src={recipe.imageUrl || recetteImg}
-            alt={recipe.title}
-          />
+          {isAuthenticated && (
+            <button
+              type="button"
+              className="rd-fav"
+              onClick={(e) => {
+                e.stopPropagation();
+                handleAddFavorite();
+              }}
+              aria-label="Ajouter aux favoris"
+              title="Ajouter aux favoris"
+            >
+              ★
+            </button>
+          )}
         </div>
 
-        <div className="recipe-details-card">
-          <div className="recipe-details-card-header">
-            <h2 className="recipe-details-title">{recipe.title}</h2>
-
-            {isAuthenticated && (
-              <button
-                className="recipe-details-fav"
-                onClick={handleAddFavorite}
-              >
-                Ajouter aux favoris ⭐
-              </button>
-            )}
+        {/* CARD */}
+        <div className="rd-card">
+          <div className="rd-card-head">
+            <h2 className="rd-card-title">{recipe.title}</h2>
           </div>
 
-          <section className="recipe-details-section">
+          <section className="rd-section">
             <h3>Ingrédients</h3>
             <p>{recipe.ingredients}</p>
           </section>
 
-          <section className="recipe-details-section">
+          <section className="rd-section">
             <h3>Étapes</h3>
             <p>{recipe.steps}</p>
           </section>
 
-          <section className="recipe-details-section">
+          <section className="rd-section">
             <h3>Description</h3>
             <p>{recipe.description}</p>
           </section>
         </div>
-
-        {showFavModal && (
-          <ConfirmModal
-            title="Favoris"
-            message={favMessage}
-            confirmText="OK"
-            cancelText=""
-            onCancel={() => setShowFavModal(false)}
-            onConfirm={() => setShowFavModal(false)}
-          />
-        )}
-
       </div>
+
+      {showFavModal && (
+        <ConfirmModal
+          title="Favoris"
+          message={favMessage}
+          confirmText="OK"
+          cancelText=""
+          onCancel={() => setShowFavModal(false)}
+          onConfirm={() => setShowFavModal(false)}
+        />
+      )}
     </main>
   );
 }
