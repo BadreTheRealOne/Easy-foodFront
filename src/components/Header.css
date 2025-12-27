@@ -54,13 +54,16 @@
   border-radius: 20px;
   font-weight: 600;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn-outline {
+  text-decoration: none;
   background: transparent;
   border: 2px solid #f6a52a;
   color: #f6a52a;
   padding: 8px 18px;
+  border: none;
   border-radius: 20px;
   cursor: pointer;
 }
@@ -116,7 +119,10 @@
 .mobile-menu.show {
   transform: translateY(0);
 }
-
+.header-link a{
+list-style-type: none;
+text-decoration: none;
+}
 .mobile-menu a {
   color: white;
   font-size: 1.5rem;
