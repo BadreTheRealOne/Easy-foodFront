@@ -1,9 +1,8 @@
 /* =========================
-   PAGE
+   PAGE FAVORITES
 ========================= */
-.Favorites-page {
+.favorites-page {
   width: 100%;
- 
   display: flex;
   justify-content: center;
 }
@@ -11,16 +10,16 @@
 /* =========================
    WRAPPER
 ========================= */
-.Favorites-wrapper {
+.favorites-wrapper {
   width: 100%;
-  max-width: 1600px; /* 👈 plus large */
+  max-width: 1600px;
   padding: 0 4rem;
 }
 
 /* =========================
    TITRE
 ========================= */
-.Favorites-title {
+.favorites-title {
   color: white;
   font-size: 2.4rem;
   font-weight: 700;
@@ -31,64 +30,76 @@
 /* =========================
    GRID
 ========================= */
-.Favorites-grid {
+.favorites-grid {
   display: grid;
-  grid-template-columns: repeat(5, 300px); /* 👈 cards plus larges */
-  gap: 3rem; /* 👈 plus d’air */
-  justify-content: center;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2.5rem;
+  justify-items: center;
 }
 
 /* =========================
    CARD
 ========================= */
-.Favorite-card {
+.favorite-card {
+  width: 100%;
+  max-width: 300px;
   background: rgba(0, 0, 0, 0.6);
   border-radius: 18px;
   overflow: hidden;
   text-align: center;
-
-  box-shadow: 0 16px 40px rgba(0,0,0,.55);
   backdrop-filter: blur(6px);
-
+  box-shadow: 0 16px 40px rgba(0,0,0,.55);
   transition: transform .25s ease, box-shadow .25s ease;
 }
 
-.Favorite-card:hover {
-  transform: translateY(-8px);
+.favorite-card:hover {
+  transform: translateY(-6px);
   box-shadow: 0 24px 55px rgba(0,0,0,.75);
 }
 
 /* =========================
    IMAGE
 ========================= */
-.Favorite-card img {
+.favorite-card img {
   width: 100%;
-  height: 200px; /* 👈 image plus grande */
+  height: 200px;
   object-fit: cover;
+  display: block;
 }
 
 /* =========================
-   TITRE RECETTE
+   TITRE
 ========================= */
-.Favorite-card h3 {
+.favorite-card h3 {
   color: white;
   margin: 1.2rem 0 1rem;
   font-size: 1.15rem;
   font-weight: 600;
+  padding: 0 0.8rem;
 }
 
 /* =========================
    BOUTON
 ========================= */
-.Favorite-card button {
+.favorite-card button {
   width: 100%;
   border: none;
   padding: 0.9rem;
   background: #f6a52a;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
 }
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+  .favorites-wrapper {
+    padding: 0 1.5rem;
+  }
+}
+
 /* =========================
    RESPONSIVE FAVORITES
 ========================= */

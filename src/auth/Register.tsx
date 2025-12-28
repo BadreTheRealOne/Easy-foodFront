@@ -7,6 +7,7 @@ import './Register.css';
 function Register(): JSX.Element {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
   const [consent, setConsent] = useState(false);
   const [error, setError] = useState('');
@@ -23,23 +24,15 @@ function Register(): JSX.Element {
     }
 
     try {
-      const response = await api.post('/auth/register', {
+      await api.post('/auth/register', {
         email,
         password,
         name,
         consent_rgpd: consent,
       });
 
-      console.log('REGISTER OK :', response.data);
-
-      // 👉 si plus tard tu renvoies un token à l’inscription
-      if (response.data.access_token) {
-        localStorage.setItem('token', response.data.access_token);
-        navigate('/recipes');
-      } else {
-        navigate('/login');
-      }
-    } catch (err) {
+      navigate('/login');
+    } catch {
       setError('Erreur lors de l’inscription');
     }
   };
@@ -47,8 +40,6 @@ function Register(): JSX.Element {
   return (
     <main className="register-page">
       <div className="register-container">
-
-        {/* GAUCHE */}
         <div className="register-left">
           <div className="left-title-l">
             <h2>
@@ -64,7 +55,6 @@ function Register(): JSX.Element {
           <p>Des recettes simples pour la vie étudiante.</p>
         </div>
 
-        {/* DROITE */}
         <form className="register-right" onSubmit={handleSubmit}>
           <h1>Inscription</h1>
 
@@ -78,13 +68,39 @@ function Register(): JSX.Element {
             required
           />
 
-          <label>Mot de passe</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <label>mot de passe</label>
+
+<div className="password-field">
+  <input
+    type={showPassword ? "text" : "password"}
+    value={password}
+    onChange={(e) => setPassword(e.target.value)}
+    required
+  />
+
+  <span
+    className="password-eye"
+    onClick={() => setShowPassword(!showPassword)}
+  >
+    {/* ŒIL OUVERT */}
+    <svg
+      className={`eye-icon ${showPassword ? "visible" : ""}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M12 5c-7 0-10 7-10 7s3 7 10 7 10-7 10-7-3-7-10-7zm0 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/>
+    </svg>
+
+    {/* ŒIL BARRÉ */}
+    <svg
+      className={`eye-icon ${!showPassword ? "visible" : ""}`}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M2 5l17 17M12 5c-7 0-10 7-10 7a17 17 0 0 0 4.5 5.5M12 19c7 0 10-7 10-7a17 17 0 0 0-4.5-5.5"/>
+    </svg>
+  </span>
+</div>
 
           <label>Nom</label>
           <input
@@ -107,7 +123,6 @@ function Register(): JSX.Element {
             S’inscrire
           </button>
         </form>
-
       </div>
     </main>
   );

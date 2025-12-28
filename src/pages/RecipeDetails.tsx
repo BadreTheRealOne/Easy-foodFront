@@ -74,7 +74,13 @@ export default function RecipeDetails() {
       <div className="rd-frame">
         {/* IMAGE */}
         <div className="rd-media">
-          <img src={recipe.imageUrl || recetteImg} alt={recipe.title} />
+         <img
+  src={recipe.imageUrl 
+    ? `http://localhost:3000${recipe.imageUrl}` 
+    : "/placeholder.jpg"}
+  alt={recipe.title}
+/>
+
 
           {isAuthenticated && (
             <button

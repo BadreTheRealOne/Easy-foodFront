@@ -1,10 +1,19 @@
 import "./Favorites.css";
 import { useEffect, useState } from "react";
-import { api } from "../api/axios";
+import { api, API_URL } from "../api/axios";
 import { useNavigate } from "react-router-dom";
 
+type Favorite = {
+  id: string;
+  recipe: {
+    id: string;
+    title: string;
+    imageUrl?: string | null;
+  };
+};
+
 export default function Favorites() {
-  const [favorites, setFavorites] = useState<any[]>([]);
+  const [favorites, setFavorites] = useState<Favorite[]>([]);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -18,21 +27,27 @@ export default function Favorites() {
     };
 
     fetchFavorites();
-  }, []);
+  }, [navigate]);
 
   return (
-    <main className="Favorites-page">
-      <div className="Favorites-wrapper">
-        <h1 className="Favorites-title">Mes recettes favorites</h1>
+    <main className="favorites-page">
+      <div className="favorites-wrapper">
+        <h1 className="favorites-title">Mes recettes favorites</h1>
 
-        <section className="Favorites-grid">
+        <section className="favorites-grid">
           {favorites.map((fav) => (
-            <article className="Favorite-card" key={fav.recipe.id}>
+            <article className="favorite-card" key={fav.recipe.id}>
               <img
-                src={fav.recipe.imageUrl || "/placeholder.jpg"}
-                alt="Recette"
+                src={
+                  fav.recipe.imageUrl
+                    ? `${API_URL}${fav.recipe.imageUrl}`
+                    : "/placeholder.jpg"
+                }
+                alt={fav.recipe.title}
               />
+
               <h3>{fav.recipe.title}</h3>
+
               <button onClick={() => navigate(`/recipes/${fav.recipe.id}`)}>
                 Voir
               </button>

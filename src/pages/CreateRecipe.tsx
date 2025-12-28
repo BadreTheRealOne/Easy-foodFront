@@ -2,6 +2,8 @@ import "./CreateRecipe.css";
 import { useEffect, useState } from "react";
 import { api } from "../api/axios";
 import { useNavigate } from "react-router-dom";
+import ConfirmModal from "./ConfirmModal";
+import successGif from "../assets/usopp.gif"; // 👈 ton gif ici
 
 type Category = {
   id: string;
@@ -12,34 +14,32 @@ export default function CreateRecipe() {
   const navigate = useNavigate();
 
   const [categories, setCategories] = useState<Category[]>([]);
+  const [imageFile, setImageFile] = useState<File | null>(null);
+  const [preview, setPreview] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState(false);
+
+
   const [form, setForm] = useState({
     title: "",
     categoryId: "",
-    imageUrl: "",
     ingredients: "",
     steps: "",
     description: "",
   });
 
-  // 🔐 Protection route
+  // modal
+  const [showModal, setShowModal] = useState(false);
+
+  // 🔐 protection route
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/login");
     }
   }, [navigate]);
 
-  // 📦 Récupération des catégories
+  // catégories
   useEffect(() => {
-    const fetchCategories = async () => {
-      try {
-        const res = await api.get("/categories");
-        setCategories(res.data);
-      } catch (err) {
-        console.error("Erreur récupération catégories", err);
-      }
-    };
-
-    fetchCategories();
+    api.get("/categories").then((res) => setCategories(res.data));
   }, []);
 
   const handleChange = (
@@ -48,43 +48,64 @@ export default function CreateRecipe() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+ const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-    try {
-      await api.post("/recipes", form);
-      navigate("/recipes");
-    } catch (err) {
-      console.error("Erreur création recette", err);
-      alert("Erreur lors de la création de la recette");
-    }
-  };
+  const data = new FormData();
+  data.append("title", form.title);
+  data.append("categoryId", form.categoryId);
+  data.append("ingredients", form.ingredients);
+  data.append("steps", form.steps);
+  data.append("description", form.description);
+
+  if (imageFile) data.append("image", imageFile);
+
+  try {
+    await api.post("/recipes", data); // ✅ BACK OK
+
+    setShowModal(true); // ✅ MODAL APRÈS 200
+
+    // reset
+    setForm({
+      title: "",
+      categoryId: "",
+      ingredients: "",
+      steps: "",
+      description: "",
+    });
+    setImageFile(null);
+    setPreview(null);
+
+  } catch (err) {
+    console.error(err);
+    alert("Erreur lors de la création de la recette");
+  }
+};
+
 
   return (
     <main className="create-recipe-page">
       <h1 className="create-recipe-title">Créer une recette</h1>
 
       <form className="create-recipe-form" onSubmit={handleSubmit}>
-
-        {/* LIGNE 1 */}
-        <div className="form-row">
-          <div className="form-group">
+        <div className="cr-row">
+          <div className="cr-group">
             <label>Titre</label>
             <input
               name="title"
-              type="text"
-              placeholder="Ex : Pâtes carbonara"
+              value={form.title}
               onChange={handleChange}
               required
             />
           </div>
 
-          <div className="form-group">
+          <div className="cr-group">
             <label>Catégorie</label>
             <select
               name="categoryId"
+              value={form.categoryId}
               onChange={handleChange}
-             
+              required
             >
               <option value="">Choisir une catégorie</option>
               {categories.map((cat) => (
@@ -96,58 +117,80 @@ export default function CreateRecipe() {
           </div>
         </div>
 
-        {/* IMAGE */}
-        <div className="form-row">
-          <div className="form-group full">
-            <label>Image (URL)</label>
+        {/* DROP IMAGE */}
+        <div className="cr-group">
+          <label>Image</label>
+          <label className="cr-drop">
+            {preview ? (
+              <img className="cr-drop-preview" src={preview} alt="preview" />
+            ) : (
+              <div className="cr-drop-empty">
+                <strong>Glisse une image ici</strong>
+                <span>ou clique pour choisir</span>
+              </div>
+            )}
+
             <input
-              name="imageUrl"
-              type="text"
-              placeholder="https://..."
-              onChange={handleChange}
+              type="file"
+              accept="image/*"
+              hidden
+              onChange={(e) => {
+                const file = e.target.files?.[0];
+                if (file) {
+                  setImageFile(file);
+                  setPreview(URL.createObjectURL(file)); // 🔑 LA CLÉ
+                }
+              }}
             />
-          </div>
+          </label>
         </div>
 
-        {/* INGREDIENTS */}
-        <div className="form-group full">
+        <div className="cr-group">
           <label>Ingrédients</label>
           <textarea
             name="ingredients"
-            placeholder="• 200g de pâtes
-• 100g de lardons
-• Crème fraîche"
+            value={form.ingredients}
             onChange={handleChange}
             required
           />
         </div>
 
-        {/* ETAPES */}
-        <div className="form-group full">
+        <div className="cr-group">
           <label>Étapes</label>
           <textarea
             name="steps"
-            placeholder="1. Faire cuire les pâtes
-2. Faire revenir les lardons..."
+            value={form.steps}
             onChange={handleChange}
             required
           />
         </div>
 
-        {/* DESCRIPTION */}
-        <div className="form-group full">
+        <div className="cr-group">
           <label>Description</label>
           <textarea
             name="description"
-            placeholder="Recette rapide, économique et idéale pour les étudiants."
+            value={form.description}
             onChange={handleChange}
           />
         </div>
 
-        <button className="create-btn" type="submit">
-          Créer la recette
-        </button>
+        <button className="create-btn">Créer la recette</button>
       </form>
+
+      {/* ✅ MODAL SUCCÈS */}
+      {showModal && (
+  <ConfirmModal
+    title="Recette bien créée 🎉"
+    message="Ta recette a été ajoutée avec succès."
+    gifUrl={successGif}          // 👈 ton gif
+    confirmText="Voir les recettes"
+    cancelText="Rester ici"
+    autoCloseMs={2500}           // 👈 auto close
+    onConfirm={() => navigate("/recipes")}
+    onCancel={() => setShowModal(false)}
+  />
+)}
+
     </main>
   );
 }

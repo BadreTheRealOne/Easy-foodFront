@@ -1,5 +1,4 @@
 import "./Recipes.css";
-import recetteImg from "../assets/menue-home-img.png";
 import { useEffect, useState } from "react";
 import { api } from "../api/axios";
 import { useNavigate } from "react-router-dom";
@@ -40,6 +39,7 @@ export default function Recipes() {
   // modal delete
   const [showDelete, setShowDelete] = useState(false);
   const [recipeToDelete, setRecipeToDelete] = useState<Recipe | null>(null);
+  const [showDeletedModal, setShowDeletedModal] = useState(false);
 
   const limit = 10;
 
@@ -74,19 +74,27 @@ export default function Recipes() {
     setShowDelete(true);
   };
 
-  const confirmDelete = async () => {
-    if (!recipeToDelete) return;
+ const confirmDelete = async () => {
+  if (!recipeToDelete) return;
 
-    try {
-      await api.delete(`/recipes/${recipeToDelete.id}`);
-      setRecipes((prev) => prev.filter((x) => x.id !== recipeToDelete.id));
-    } catch (err) {
-      console.error("Erreur suppression recette", err);
-    } finally {
-      setShowDelete(false);
-      setRecipeToDelete(null);
-    }
-  };
+  try {
+    const res = await api.delete(`/recipes/${recipeToDelete.id}`);
+
+    // ✅ suppression réelle côté front
+    setRecipes((prev) => prev.filter((x) => x.id !== recipeToDelete.id));
+
+    // ✅ ouvrir la modal succès
+    setShowDeletedModal(true);
+
+  } catch (err) {
+    console.error("Erreur suppression recette", err);
+  } finally {
+    // fermer la modal de confirmation
+    setShowDelete(false);
+    setRecipeToDelete(null);
+  }
+};
+
 
   return (
     <main className="recipes-page">
@@ -105,9 +113,12 @@ export default function Recipes() {
                   <article className="recipe-card" key={recipe.id}>
                     <div className="recipe-thumb">
                       <img
-                        src={recipe.imageUrl || recetteImg}
-                        alt={recipe.title}
-                      />
+                          src={recipe.imageUrl 
+                          ? `http://localhost:3000${recipe.imageUrl}` 
+                          : "/placeholder.jpg"}
+                          alt={recipe.title}
+                          />
+
 
                       {isMine && (
                         <span className="badge-mine">Ma recette</span>
@@ -166,17 +177,26 @@ export default function Recipes() {
         )}
       </div>
 
-      {showDelete && recipeToDelete && (
+     {/* MODAL CONFIRMATION (AVANT DELETE) */}
+      {recipeToDelete && (
         <ConfirmModal
-          title="Suppression"
-          message={`Supprimer "${recipeToDelete.title}" ? Cette action est irréversible.`}
-          confirmText="Oui, supprimer"
+          title="Supprimer la recette"
+          message={`Tu es sûr de vouloir supprimer "${recipeToDelete.title}" ?`}
+          confirmText="Supprimer"
           cancelText="Annuler"
           onConfirm={confirmDelete}
-          onCancel={() => {
-            setShowDelete(false);
-            setRecipeToDelete(null);
-          }}
+          onCancel={() => setRecipeToDelete(null)}
+        />
+      )}
+
+      {/* MODAL SUCCÈS (APRÈS DELETE API OK) */}
+      {showDeletedModal && (
+        <ConfirmModal
+          title="Recette supprimée"
+          message="La recette a bien été supprimée."
+          confirmText="OK"
+          onConfirm={() => setShowDeletedModal(false)}
+          onCancel={() => setShowDeletedModal(false)}
         />
       )}
     </main>
