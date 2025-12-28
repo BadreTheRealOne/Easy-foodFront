@@ -21,6 +21,7 @@ export default function RecipeDetails() {
 
   const [showFavModal, setShowFavModal] = useState(false);
   const [favMessage, setFavMessage] = useState("");
+const API_URL = import.meta.env.VITE_API_URL;
 
   const isAuthenticated = !!localStorage.getItem("token");
 
@@ -75,9 +76,11 @@ export default function RecipeDetails() {
         {/* IMAGE */}
         <div className="rd-media">
          <img
-  src={recipe.imageUrl 
-    ? `http://localhost:3000${recipe.imageUrl}` 
-    : "/placeholder.jpg"}
+  src={
+    recipe.imageUrl
+      ? `${API_URL}${recipe.imageUrl}`
+      : "/placeholder.jpg"
+  }
   alt={recipe.title}
 />
 

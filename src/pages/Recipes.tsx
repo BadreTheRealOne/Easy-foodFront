@@ -42,6 +42,7 @@ export default function Recipes() {
   const [showDeletedModal, setShowDeletedModal] = useState(false);
 
   const limit = 10;
+const API_URL = import.meta.env.VITE_API_URL;
 
   const fetchPage = async (p: number) => {
     setLoading(true);
@@ -114,7 +115,7 @@ export default function Recipes() {
                     <div className="recipe-thumb">
                       <img
                           src={recipe.imageUrl 
-                          ? `http://localhost:3000${recipe.imageUrl}` 
+                           ? `${API_URL}${recipe.imageUrl}` 
                           : "/placeholder.jpg"}
                           alt={recipe.title}
                           />
