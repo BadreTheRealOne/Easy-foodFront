@@ -159,12 +159,9 @@ width: 100%;
 }
 
 
-/* =========================
-   RESPONSIVE FIX LOGIN / REGISTER
-   (LE FORM RESTE, LE LEFT DISPARAÎT)
-========================= */
 
-/* LAPTOP 1024px ↓ */
+
+
 @media (max-width: 1024px) {
   .login-container {
     grid-template-columns: 1fr;

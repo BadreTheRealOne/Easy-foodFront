@@ -118,87 +118,55 @@ width: 100%;
   cursor: pointer;
 }
 
-/* =========================
-   RESPONSIVE GLOBAL
-========================= */
-
-/* TABLET & PETIT LAPTOP (1024px ↓) */
+/* LAPTOP 1024px ↓ */
 @media (max-width: 1024px) {
-  .login-container,
+  .register-container {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    height: auto;
+  }
+
+  .register-left{
+    display: none;
+  }
+
+  .register-right {
+    padding: 2.5rem 2rem;
+  }
+}
+
+/* TABLET 768px ↓ */
+@media (max-width: 768px) {
+  .register-container,
   .register-container {
     max-width: 380px;
+  }
+
+  .register-right {
     padding: 2.2rem 1.8rem;
   }
 }
 
-/* TABLET PORTRAIT (768px ↓) */
-@media (max-width: 768px) {
-  .login-page,
-  .register-page {
-    padding: 1.5rem 1rem;
-  }
-
-  .login-container,
-  .register-container {
-    max-width: 360px;
-    padding: 2rem 1.6rem;
-  }
-
-  .login-right h1,
-  .register-right h1 {
-    font-size: 1.8rem;
-  }
-}
-
-/* MOBILE LARGE (425px ↓) */
+/* MOBILE L 425px ↓ */
 @media (max-width: 425px) {
-  .login-container,
   .register-container {
+    width: 100%;
     max-width: 100%;
-    padding: 1.8rem 1.4rem;
     border-radius: 18px;
   }
 
-  .login-right input,
-  .register-right input {
-    height: 40px;
-    font-size: 0.95rem;
-  }
-
-  .login-btn,
-  .register-btn {
-    font-size: 0.95rem;
-    padding: 0.75rem;
+  .register-right {
+    padding: 2rem 1.4rem;
   }
 }
 
-/* MOBILE STANDARD (375px ↓) */
+/* MOBILE M / S 375px ↓ */
 @media (max-width: 375px) {
-  .login-right h1,
   .register-right h1 {
     font-size: 1.6rem;
   }
 
-  .login-checkbox,
   .register-checkbox {
     font-size: 0.8rem;
-  }
-}
-
-/* MOBILE SMALL (320px ↓) */
-@media (max-width: 320px) {
-  .login-container,
-  .register-container {
-    padding: 1.5rem 1.2rem;
-  }
-
-  .login-right input,
-  .register-right input {
-    height: 38px;
-  }
-
-  .login-btn,
-  .register-btn {
-    font-size: 0.9rem;
   }
 }
